@@ -1,0 +1,22 @@
+{
+    "builds": [
+      {
+        "src": "index.html",  
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "dist"  
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/evento/:idUrl/:urlPersonalizada",
+        "dest": "/index.html"  
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"  
+      }
+    ]
+  }
+  
