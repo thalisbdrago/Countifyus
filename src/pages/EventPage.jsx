@@ -75,7 +75,7 @@ const EventPage = () => {
     if (!eventData) return <div>Carregando...</div>;
 
     return (
-        <div className="flex flex-col items-center justify-center bg-gray-900 min-h-screen text-white px-4">
+        <div className="flex flex-col items-center justify-center bg-gray-900 min-h-screen text-white  px-4">
             <div className="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-5">
                 <div
                     className="p-6 rounded-lg shadow-lg text-center"
