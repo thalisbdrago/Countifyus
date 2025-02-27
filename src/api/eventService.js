@@ -24,12 +24,15 @@ export async function createEvent(countdownData) {
             console.log(pair[0], pair[1]);
         }
 
-        const response = await fetch("https://backend-servidor-production.up.railway.app/events/", {
+        const response = await fetch("http://backend-servidor-production.up.railway.app/events/", {
             method: "POST",
-            body: formData, // Enviando FormData para suportar arquivos
+            body: formData, // En
+            // viando FormData para suportar arquivos
         });
 
         if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Erro na resposta:", errorData);
             throw new Error("Erro ao criar evento");
         }
 
@@ -37,5 +40,8 @@ export async function createEvent(countdownData) {
         console.log("Evento criado com sucesso:", data);
     } catch (error) {
         console.error("Erro ao criar evento:", error);
+        const errorData = await response.json();
+        console.error("Erro na resposta:", errorData);
+        throw new Error("Erro ao criar evento");
     }
 }

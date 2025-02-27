@@ -105,7 +105,7 @@ const shareLink = () => {
     }, 5000); // Verifica a cada 5 segundos
   
     // Verifica se o pagamento foi aprovado
-    if (statusPagamento === "approved") {
+    if (statusPagamento === "pending") {
       clearInterval(interval);
       setIsOpen(true);
   
@@ -159,13 +159,23 @@ const shareLink = () => {
         const id = response.data.id;
         setTicket_url(ticketUrl); // Atualiza o estado com o ticket_url
         setId(id);
-        console.log(ticketUrl);
-        console.log(id);
-        window.open(ticketUrl, "_blank");
+        openTicket(ticketUrl)
       }
     );
   };
   
+  const openTicket = (a) => {
+    const newWindow = window.open(a, "_blank");
+
+    // Verifica se a janela foi aberta com sucesso
+    if (newWindow) {
+      newWindow.opener = null; // Para evitar segurança de referência
+    } else {
+      console.log("Não foi possível abrir a nova janela.");
+    }
+  }
+
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft(eventDate));
@@ -259,7 +269,19 @@ const shareLink = () => {
               <input
                 type="file"
                 onChange={(e) => {
-                  setImage(URL.createObjectURL(e.target.files[0])); // Cria o objeto URL // Chama a função que converte a imagem para base64
+                    const file = e.target.files[0];
+                    console.log("Arquivo selecionado:", file);
+                  
+                    // Verifique o tamanho do arquivo (1MB = 1 * 1024 * 1024 bytes)
+                    if (file.size > 1.5 * 1024 * 1024) {
+                      alert("O arquivo é maior que 1MB. Por favor, escolha um arquivo menor.");
+                      // Aqui você pode limpar o campo de input se desejar
+                      e.target.value = ''; // Isso limpa o campo para que o usuário precise selecionar novamente
+                      return; // Interrompe a execução se o arquivo for muito grande
+                    }
+                  
+                    // Se o arquivo for válido, armazene a imagem
+                    setImage(URL.createObjectURL(file));
                 }}
                 className="hidden "
                 id="file-upload"
