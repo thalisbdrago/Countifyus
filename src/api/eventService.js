@@ -24,7 +24,7 @@ export async function createEvent(countdownData) {
             console.log(pair[0], pair[1]);
         }
 
-        const response = await fetch("http://backend-servidor-production.up.railway.app/events/", {
+        const response = await fetch("https://backend-servidor-production.up.railway.app/events/", {
             method: "POST",
             body: formData, // En
             // viando FormData para suportar arquivos
