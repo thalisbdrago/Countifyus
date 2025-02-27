@@ -272,8 +272,8 @@ const shareLink = () => {
                     console.log("Arquivo selecionado:", file);
                   
                     // Verifique o tamanho do arquivo (1MB = 1 * 1024 * 1024 bytes)
-                    if (file.size > 1.5 * 1024 * 1024) {
-                      alert("O arquivo é maior que 1MB. Por favor, escolha um arquivo menor.");
+                    if (file.size > 2 * 1024 * 1024) {
+                      alert("O arquivo é maior que 2MB. Por favor, escolha um arquivo menor.");
                       // Aqui você pode limpar o campo de input se desejar
                       e.target.value = ''; // Isso limpa o campo para que o usuário precise selecionar novamente
                       return; // Interrompe a execução se o arquivo for muito grande
