@@ -1,9 +1,0 @@
-{
-    "routes": [
-      {
-        "src": "/evento/:idUrl/:urlPersonalizada",
-        "dest": "/EventPage.js"
-      }
-    ]
-  }
-  
