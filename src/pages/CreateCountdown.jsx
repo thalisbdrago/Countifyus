@@ -259,8 +259,7 @@ const shareLink = () => {
               <input
                 type="file"
                 onChange={(e) => {
-                  setImage(URL.createObjectURL(e.target.files[0])); // Cria o objeto URL
-                  handleImageUpload(e); // Chama a função que converte a imagem para base64
+                  setImage(URL.createObjectURL(e.target.files[0])); // Cria o objeto URL // Chama a função que converte a imagem para base64
                 }}
                 className="hidden "
                 id="file-upload"
