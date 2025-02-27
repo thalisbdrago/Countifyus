@@ -8,6 +8,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { sendEmail } from "../api/emailService";
 import { createEvent } from "../api/eventService";
 import { nanoid } from 'nanoid';
+import { TicketPix } from '../pagamentos/TicketPix'
 
 
 
@@ -23,9 +24,12 @@ const EventInvite = () => {
   const [image, setImage] = useState(null);
   const [timeLeft, setTimeLeft] = useState(getTimeLeft(eventDate));
   const [isOpen, setIsOpen] = useState(false);
+  const [isUrl, setIsUrl] = useState(false);
   const [url, setUrl] = useState("");
   const [customUrl, setCustomUrl] = useState("");
   const [emailEnviar, setEmailEnviar] =  useState("")
+  const [ticket_url, setTicket_url] = useState("");
+  const [qrCode, setQrCode] = useState("");
 
   const [id, setId] = useState('');
 
@@ -35,7 +39,7 @@ const EventInvite = () => {
 
 
   const MOCK_BODY = {
-    email: "usuar22i2o@email.com",
+    email: emailEnviar,
     identificationType: "CPF",
     number: "19119119100"
   };
@@ -117,6 +121,8 @@ const shareLink = () => {
       console.log(customUrl);
       console.log(newCustomUrl);
       console.log(idUrl);
+      setIsUrl(false)
+      
   
       const countdownData = {
         bgColor,           // Cor de fundo
@@ -148,7 +154,7 @@ const shareLink = () => {
 
 // Estado para monitorar o status do pagamento
 
-  const [ticket_url, setTicket_url] = useState("");
+  
 
   const HandlePost = () => {
     postCriarPix(MOCK_BODY).then(
@@ -156,24 +162,17 @@ const shareLink = () => {
         console.log(response);
         console.log(response.data.id);
         const ticketUrl = response.data.point_of_interaction.transaction_data.ticket_url;
+        const qrCodePag =  response.data.point_of_interaction.transaction_data.qr_code_base64;
+        setQrCode(qrCodePag)
         const id = response.data.id;
         setTicket_url(ticketUrl); // Atualiza o estado com o ticket_url
         setId(id);
-        openTicket(ticketUrl)
+        setIsUrl(true)
       }
     );
   };
   
-  const openTicket = (a) => {
-    const newWindow = window.open(a, "_blank");
 
-    // Verifica se a janela foi aberta com sucesso
-    if (newWindow) {
-      newWindow.opener = null; // Para evitar segurança de referência
-    } else {
-      console.log("Não foi possível abrir a nova janela.");
-    }
-  }
 
 
   useEffect(() => {
@@ -327,6 +326,9 @@ const shareLink = () => {
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
     <DialogContent className="flex flex-col items-center text-center w-full max-w-[95%] sm:max-w-md mx-auto p-4 sm:p-6">
+            <DialogTitle>
+                🎟️ Seu QR Code está aqui!
+            </DialogTitle>
         <DialogHeader className="flex flex-col items-center text-center mt-2 sm:mt-3">
             {customUrl && (
                 <DialogTitle>
@@ -340,29 +342,36 @@ const shareLink = () => {
             />
         </DialogHeader>
 
-        <DialogFooter className="flex flex-col sm:flex-row gap-3 w-full mt-4">
-            <Button
-                className="flex-1 px-4 py-2 rounded-lg font-bold text-white"
-                onClick={copyToClipboard} 
-                style={{ backgroundColor: bgColor, color: textColor }}
-            >
-                Copiar Link
-            </Button>
-            <Button
-                className="flex-1 px-4 py-2 rounded-lg font-bold text-white"
-                onClick={shareLink} 
-                style={{ backgroundColor: bgColor, color: textColor }}
-            >
-                Compartilhar
-            </Button>
-        </DialogFooter>
-    </DialogContent>
-</Dialog>
+            <DialogFooter className="flex flex-col sm:flex-row gap-3 w-full mt-4">
+                <Button
+                    className="flex-1 px-4 py-2 rounded-lg font-bold text-white"
+                    onClick={copyToClipboard} 
+                    style={{ backgroundColor: bgColor, color: textColor }}
+                >
+                    Copiar Link
+                </Button>
+                <Button
+                    className="flex-1 px-4 py-2 rounded-lg font-bold text-white"
+                    onClick={shareLink} 
+                    style={{ backgroundColor: bgColor, color: textColor }}
+                >
+                    Compartilhar
+                </Button>
+            </DialogFooter>
+        </DialogContent>
+    </Dialog>
 
+      <Dialog open={isUrl} onOpenChange={setIsUrl} className='flex flex-col items-center text-center w-full max-w-[95%] sm:max-w-md mx-auto p-4 sm:p-6"'>
+        <DialogContent>
+        <iframe
+            src={ticket_url}
+            width="100%"
+            height="500px" // Ajuste a altura conforme necessário
+            title="Página de Pagamento"
+          />
+        </DialogContent>
+      </Dialog>
 
-
-      
-      
       </>
 
       <div>
