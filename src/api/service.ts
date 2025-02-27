@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function postCriarPix(body: any) {
   try {
-    const response = await axios.post('http://localhost:3000/criar-pix', body, {
+    const response = await axios.post('https://api-timer-production.up.railway.app/criar-pix', body, {
       headers: { 'Content-Type': 'application/json' },
     });
     
