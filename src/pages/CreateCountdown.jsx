@@ -105,7 +105,7 @@ const shareLink = () => {
     }, 5000); // Verifica a cada 5 segundos
   
     // Verifica se o pagamento foi aprovado
-    if (statusPagamento === "pending") {
+    if (statusPagamento === "approved") {
       clearInterval(interval);
       setIsOpen(true);
   
