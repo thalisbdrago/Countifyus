@@ -118,7 +118,7 @@ const shareLink = () => {
       clearInterval(interval);
       setIsOpen(true);
   
-      const eventSlug = eventTitle.replace(/\s+/g, '-').toLowerCase();
+      const eventSlug = eventTitle.replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase();
       const idUrl = nanoid(10);
       const newCustomUrl = `${window.location.origin}/evento/${idUrl}/${eventSlug}`;
       setCustomUrl(newCustomUrl);
