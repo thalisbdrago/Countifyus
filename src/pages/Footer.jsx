@@ -28,6 +28,9 @@ const Footer = () => {
           <a href="#" className="hover:text-gray-300">
             Privacidade
           </a>
+          <p>
+            Duvidas/Suporte: seuconvite59@gmail.com
+          </p>
         </div>
       </div>
     </footer>

@@ -342,10 +342,10 @@ const shareLink = () => {
                 className="w-full rounded-lg mb-2"
               />
               <h2 className="text-xl font-bold mb-2">
-                {eventTitle || "Título do Evento"}
+                {eventTitle || "Nossa Viagem"}
               </h2>
               <p className="mb-2 text-md">
-                {message || "Uma mensagem especial para tornar este momento inesquecível!"}
+                {message || "Está pronta para ir na viagem que você sempre sonhou? Vamos juntos para aquele lugar especial!"}
               </p>
                     <div class="border w-40 mx-auto opacity-20 mt-1 flex-shrink-0"></div>
                     <p className="text-lg font-bold mt-3"></p>
