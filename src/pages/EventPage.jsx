@@ -169,7 +169,6 @@ const EventPage = () => {
         <div
           className="p-6 rounded-lg shadow-lg text-center"
           style={{
-            backgroundColor: eventData.bgColor,
             color: eventData.textColor,
             width: "90%",
             maxWidth: "450px",
