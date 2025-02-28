@@ -8,7 +8,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { sendEmail } from "../api/emailService";
 import { createEvent } from "../api/eventService";
 import { nanoid } from 'nanoid';
-import { TicketPix } from '../pagamentos/TicketPix'
+import { TicketPix } from './TicketPix'
 import  PageForm  from '../pages/FormPage'
 import  BannerPage  from '../pages/BannerPage'
 

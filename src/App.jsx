@@ -10,6 +10,7 @@ function App() {
         <Route path="/" element={<CreateCountdown />} />
         <Route path="/evento/:idUrl/:urlPersonalizada" element={<EventPage />} />
         <Route path="*" element={<NotFoundPage />} /> {/* Página para URL errada */}
+        
       </Routes>
     </BrowserRouter>
   );
