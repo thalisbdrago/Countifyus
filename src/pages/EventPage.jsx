@@ -72,38 +72,65 @@ const EventPage = () => {
         }
     }, [eventData]);
 
-    if (!eventData) return <div>Carregando...</div>;
+    if (!eventData) return <div className="relative isolate flex items-center justify-center min-h-screen px-6 py-12 sm:px-8 bg-gray-900 text-white">
+    <div
+      aria-hidden="true"
+      className="absolute inset-0 -z-10 transform-gpu overflow-hidden blur-3xl"
+    >
+      <div
+        style={{
+          clipPath:
+            "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+        }}
+        className="absolute left-[calc(50%-20rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3b82f6] to-[#6b21a8] opacity-30 sm:w-[80rem]"
+      />
+    </div>
+    <h1 className="text-4xl font-bold">Evento não encontrado!</h1>
+  </div>;
 
     return (
-        <div className="flex flex-col items-center justify-center bg-gray-900 min-h-screen text-white  px-4">
-            <div className="w-full md:w-1/2 flex items-center justify-center mt-6 md:mt-5">
+        <div className="relative isolate flex items-center justify-center min-h-screen px-6 py-12 sm:px-8 bg-gray-900">
+                        <div
+                aria-hidden="true"
+                className="absolute inset-0 -z-10 transform-gpu overflow-hidden blur-3xl"
+            >
+                <div
+                style={{
+                    clipPath:
+                    "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                }}
+                className="absolute left-[calc(50%+20rem)] aspect-[1155/678] w-[40rem] -translate-x-1/2 -rotate-[30deg] bg-gradient-to-tr from-[#3b82f6] via-[#6d28d9] to-[#1e3a8a] opacity-40 sm:w-[80rem]"
+                />
+            </div>
+            <div className="w-full md:w-1/3 flex items-center justify-center mt-6 md:mt-0">
                 <div
                     className="p-6 rounded-lg shadow-lg text-center"
-                    style={{
-                        backgroundColor: eventData.bgColor,
-                        color: eventData.textColor,
-                        width: "90%",
-                        maxWidth: "600px"
-                    }}
+                    style={{ backgroundColor: eventData.bgColor, color: eventData.textColor, width: "90%", maxWidth: "450px" }}
                 >
-                    {imageUrl && (
-                        <img
-                            src={imageUrl}
-                            alt={eventData.eventTitle}
-                            className="mb-4 rounded-lg w-full"
-                            style={{ maxWidth: "100%", height: "auto" }}
-                        />
-                    )}
-
-                    <h2 className="text-xl font-bold mb-2">{eventData.eventTitle}</h2>
-                    <p className="mb-2 text-md">{eventData.message}</p>
-
-                    <p className="text-lg font-bold">
-                        {timeLeft.days} dias, {timeLeft.hours} horas, {timeLeft.minutes} minutos, {timeLeft.seconds} segundos
+                    <div className="bg-white m-3 text-black w-[80%] mx-auto rounded-md">
+                    </div>
+                    <img
+                        src={eventData.image ? eventData.image : "https://images.unsplash.com/photo-1624646803808-9c5a9de7aa3f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGNhc2FsJTIwam92ZW18ZW58MHx8MHx8fDA%3D"}
+                        alt="Preview"
+                        className="w-full rounded-lg mb-2"
+                    />
+                    <h2 className="text-xl font-bold mb-2">
+                        {eventData.eventTitle || "Título do Evento"}
+                    </h2>
+                    <p className="mb-2 text-md mb-5">
+                        {eventData.message || "Uma mensagem especial para tornar este momento inesquecível!"}
+                    </p>
+                    <div class="border w-40 mx-auto opacity-20 mt-1 flex-shrink-0"></div>
+                    <p className="text-lg font-bold mt-3"></p>
+                    <p>
+                    ⏳ A contagem regressiva começou! Falta apenas: <br/>
+                    {timeLeft?.days ?? 0} dias, {timeLeft?.hours ?? 0} horas, {timeLeft?.minutes ?? 0} minutos e {timeLeft?.seconds ?? 0} segundos 🎉
                     </p>
                 </div>
             </div>
         </div>
+
+
     );
 };
 
