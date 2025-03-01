@@ -20,7 +20,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-12 text-center text-sm text-gray-400">
-        <p>&copy; 2025 coutifyUs. Todos os direitos reservados.</p>
+        <p>&copy; 2025 countifyUs. Todos os direitos reservados.</p>
         <div className="mt-4 flex justify-center gap-6">
           <a href="#" className="hover:text-gray-300">
             Termos de Serviço

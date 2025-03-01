@@ -325,7 +325,7 @@ const shareLink = () => {
             style={{ backgroundColor: bgColor, color: textColor, width: "90%", maxWidth: "450px" }}
           >
             <div className="bg-white m-3 text-black w-[80%] mx-auto rounded-md">
-              <span className="">coutifyUs.com/{eventTitle.replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase()}</span>
+              <span className="">countifyUs.com/{eventTitle.replace(/\s+/g, '-').replace(/[^\w\-]/g, '').toLowerCase()}</span>
             </div>
               <img
                 src={image ? image : "https://images.unsplash.com/photo-1624646803808-9c5a9de7aa3f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTZ8fGNhc2FsJTIwam92ZW18ZW58MHx8MHx8fDA%3D"}
